@@ -1,0 +1,26 @@
+input:
+  file:
+    path: "dataset.json"
+    multipart: false
+  processors:
+    - sleep:
+        duration: "0.1s"
+
+output:
+  kafka:
+    addresses:
+      - ${KAFKA_ADDR}
+    topic: test
+    client_id: benthos_kafka_output
+    key: ""
+    compression: none
+    max_in_flight: 1
+    batching:
+      count: 1
+      byte_size: 0
+      period: ""
+
+metrics:
+  type: prometheus
+  prometheus:
+    prefix: producer

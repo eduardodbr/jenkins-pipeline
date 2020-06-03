@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producer
+  labels:
+    app: producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: producer
+  template:
+    metadata:
+      labels:
+        app: producer
+    spec:
+      containers:
+      - name: benthos
+        image: gcr.io/k8s-the-hard-way-277515/benthos-producer:1.0.0
+        imagePullPolicy: Always
+        env:
+          - name: KAFKA_ADDR
+            value: kafka-headless.kafka:9092
+        ports:
+          - containerPort: 4195
