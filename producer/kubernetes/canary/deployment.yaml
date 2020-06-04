@@ -1,18 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: producer
+  name: producer-canary
   labels:
     app: producer
+    env: canary
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: producer
+      env: canary
   template:
     metadata:
       labels:
         app: producer
+        env: canary
     spec:
       containers:
       - name: benthos

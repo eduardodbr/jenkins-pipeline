@@ -1,18 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: producer
+  name: producer-production
   labels:
     app: producer
+    env: production
 spec:
   replicas: 3
   selector:
     matchLabels:
       app: producer
+      env: production
   template:
     metadata:
       labels:
         app: producer
+        env: production
     spec:
       containers:
       - name: benthos
